@@ -1,0 +1,19 @@
+service: bank-scraper 
+
+provider:
+  name: aws
+  runtime: python3.6
+  timeout: 50
+
+functions:
+  scrape_bank:
+    handler: handler.main
+    events:
+      - schedule: rate(1 day)
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: false
